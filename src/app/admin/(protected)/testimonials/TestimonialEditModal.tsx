@@ -10,6 +10,7 @@ type TestimonialItem = {
   pet_name: string | null;
   comment: string;
   rating: number;
+  photo?: string | null;
 };
 
 export default function TestimonialEditModal({ item }: { item: TestimonialItem }) {

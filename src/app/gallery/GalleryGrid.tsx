@@ -9,13 +9,13 @@ type GalleryItem = {
   id: string;
   image: string;
   title: string | null;
-  category: string;
+  category: string | null;
   createdAt: Date;
 };
 
 export default function GalleryGrid({ images }: { images: GalleryItem[] }) {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState<string | null>("All");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
