@@ -48,6 +48,7 @@ export async function addService(formData: FormData) {
 
     revalidatePath("/admin/services");
     revalidatePath("/services");
+    revalidatePath("/", "layout");
     return { success: true };
   } catch (error) {
     console.error("Error adding service:", error);
@@ -68,6 +69,7 @@ export async function deleteService(id: string) {
     
     revalidatePath("/admin/services");
     revalidatePath("/services");
+    revalidatePath("/", "layout");
     return { success: true };
   } catch (error) {
     console.error("Error deleting service:", error);
@@ -124,6 +126,7 @@ export async function updateService(id: string, formData: FormData) {
     revalidatePath("/admin/services");
     revalidatePath(`/admin/services/${id}/edit`);
     revalidatePath("/services");
+    revalidatePath("/", "layout");
     return { success: true };
   } catch (error) {
     console.error("Error updating service:", error);

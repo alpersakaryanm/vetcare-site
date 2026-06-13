@@ -13,10 +13,10 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Zaten giriş yapılmışsa ana sayfaya yönlendir (admin paneline değil!)
+  // Zaten giriş yapılmışsa direkt panele yönlendir
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/");
+      router.push("/admin");
     }
   }, [status, router]);
 
@@ -33,7 +33,7 @@ export default function LoginPage() {
     if (res?.error) {
       setError("Geçersiz e-posta veya şifre");
     } else {
-      router.push("/");
+      router.push("/admin");
     }
   };
 
