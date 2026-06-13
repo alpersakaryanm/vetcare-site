@@ -1,0 +1,318 @@
+/* ============================================
+   GALERİ — DYNAMIC BENTO MASONRY
+   ============================================ */
+
+/* ══════════════════════════════════════════
+   1. HERO GRADIENT
+   ══════════════════════════════════════════ */
+.heroGradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #bae6fd 100%);
+  padding: 80px 0 100px;
+  text-align: center;
+  color: #0f172a;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroTitle {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Floating background orbs */
+.orb1 {
+  position: absolute; width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%);
+  top: -250px; right: -250px; border-radius: 50%;
+  pointer-events: none; animation: floatOrb 9s ease-in-out infinite; z-index: 0;
+}
+.orb2 {
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%);
+  bottom: -200px; left: -200px; border-radius: 50%;
+  pointer-events: none; animation: floatOrb 12s ease-in-out infinite reverse; z-index: 0;
+}
+@keyframes floatOrb {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%      { transform: translate(30px,-40px) scale(1.08); }
+}
+
+/* ══════════════════════════════════════════
+   2. CONTENT SECTION
+   ══════════════════════════════════════════ */
+.contentSection {
+  margin-top: -60px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 10;
+}
+
+/* CATEGORY FILTERS */
+.filters {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: center; margin-bottom: 40px;
+  position: relative; z-index: 2;
+}
+.filterBtn {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.8);
+  color: #475569;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.filterBtn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  color: #0b415e;
+}
+.activeFilter {
+  background: linear-gradient(135deg, #1a8cc4, #116892);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 10px 25px rgba(37,99,235,0.3);
+}
+.activeFilter:hover { color: white; transform: translateY(-4px) scale(1.05); }
+
+/* ══════════════════════════════════════════
+   NEW LIST LAYOUT (ABOUT PREVIEW STYLE)
+   ══════════════════════════════════════════ */
+.listContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  padding-top: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #1a8cc4;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.sectionBadge span {
+  color: #cbd5e1;
+}
+
+.aboutTextContent h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #1e293b;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+}
+
+.aboutTextContent h2 span {
+  font-weight: 800;
+  color: #1a8cc4;
+}
+
+.separator {
+  width: 30px;
+  height: 3px;
+  background: #e2e8f0;
+  margin-bottom: 10px;
+  position: relative;
+}
+.separator::after {
+  content: '';
+  position: absolute;
+  left: 0; top: -1.5px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.aboutTextContent p {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 0px;
+}
+
+/* Image side */
+.aboutImageContent {
+  position: relative;
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.aboutImageContent:hover {
+  transform: scale(1.02);
+}
+
+.blueShapeRight {
+  position: absolute;
+  right: 0;
+  top: 10%;
+  width: 80%;
+  height: 90%;
+  background: #0ea5e9;
+  border-radius: 24px;
+  border-top-right-radius: 80px;
+  z-index: 1;
+}
+
+.blueShapeLeft {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 80%;
+  height: 90%;
+  background: #0ea5e9;
+  border-radius: 24px;
+  border-top-left-radius: 80px;
+  z-index: 1;
+}
+
+.imageWrapperRight {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  width: 80%;
+  height: 95%;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.imageWrapperLeft {
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 80%;
+  height: 95%;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Floating Pills */
+.floatingPill {
+  position: absolute;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 3;
+}
+
+@keyframes floatRandom1 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(-5px, -8px) rotate(-2deg); }
+  50% { transform: translate(3px, -4px) rotate(1deg); }
+  75% { transform: translate(-2px, -10px) rotate(-1deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+@keyframes floatRandom2 {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(6px, -6px) rotate(2deg); }
+  66% { transform: translate(-4px, -2px) rotate(-2deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.pillRight {
+  top: 25%;
+  left: -5%;
+  animation: floatRandom1 6s ease-in-out infinite;
+}
+
+.pillLeft {
+  top: 25%;
+  right: -5%;
+  animation: floatRandom2 7.5s ease-in-out infinite alternate;
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center; padding: 80px 20px;
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+  border-radius: 22px; box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  position: relative; z-index: 2;
+}
+.emptyState h3 { color: #1e293b; font-size: 1.5rem; margin-bottom: 12px; }
+.emptyState p { color: #64748b; font-size: 1.1rem; }
+
+/* Modal */
+.modalOverlay {
+  position: fixed; inset: 0; background: rgba(15,23,42,0.95);
+  z-index: 99999; display: flex; align-items: center; justify-content: center;
+  padding: 20px; animation: fadeIn 0.3s ease-out; backdrop-filter: blur(10px);
+}
+@keyframes fadeIn { from { opacity: 0; backdrop-filter: blur(0px); } to { opacity: 1; backdrop-filter: blur(10px); } }
+
+.modalContent { position: relative; max-width: 1000px; width: 100%; max-height: 90vh; display: flex; flex-direction: column; }
+.closeBtn {
+  position: fixed; top: 20px; right: 30px;
+  background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.3);
+  font-size: 2.5rem; width: 50px; height: 50px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  z-index: 100000; transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.closeBtn:hover { background: #ef4444; border-color: #ef4444; transform: scale(1.15) rotate(90deg); }
+
+.modalImageWrapper {
+  position: relative; width: 100%; height: 75vh; border-radius: 22px; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.modalImage { object-fit: contain; }
+
+.modalInfo { margin-top: 20px; text-align: center; color: white; }
+.modalInfo h2 { margin-bottom: 10px; font-size: 1.8rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.modalMetaRow { display: flex; justify-content: center; align-items: center; gap: 16px; }
+.modalDate { font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+@media (max-width: 1024px) {
+  .listContainer {
+    grid-template-columns: 1fr;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .aboutTextContent, .aboutImageContent {
+    order: unset !important;
+  }
+  .blueShapeLeft, .blueShapeRight {
+    width: 100%;
+    right: 0; left: 0;
+    border-radius: 24px;
+  }
+  .imageWrapperLeft, .imageWrapperRight {
+    width: 90%;
+    right: 5%; left: 5%;
+  }
+}

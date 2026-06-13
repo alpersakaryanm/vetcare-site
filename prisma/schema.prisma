@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  name         String?
+  email        String        @unique
+  password     String
+  role         String        @default("Editor") // Administrator, Editor, Receptionist, Member
+  testimonials Testimonial[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Page {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  content         String
+  seo_title       String?
+  seo_description String?
+  status          String   @default("draft") // draft, published
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  icon        String?
+  price       Float?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Veterinarian {
+  id             String   @id @default(uuid())
+  name           String
+  title          String
+  specialization String?
+  university     String?
+  graduationYear String?
+  biography      String?
+  photo          String?
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model BlogPost {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  cover_image  String?
+  content      String
+  category     String?
+  tags         String?
+  author       String?
+  published_at DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  owner_name String
+  pet_name   String?
+  comment    String
+  rating     Int      @default(5)
+  photo      String?
+  userId     String?  // hangi üye yazdı (null = eski kayıtlar)
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Gallery {
+  id        String   @id @default(cuid())
+  image     String
+  title     String?
+  category  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Appointment {
+  id         String   @id @default(cuid())
+  owner_name String
+  pet_name   String?
+  phone      String
+  email      String?
+  service    String?
+  date       DateTime
+  status     String   @default("Pending") // Pending, Approved, Completed, Cancelled
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Settings {
+  id           String @id @default(cuid())
+  clinic_name  String @default("Veterinary Clinic")
+  address      String?
+  phone        String?
+  whatsapp     String?
+  email               String?
+  instagram_link      String?
+  facebook_link       String?
+  youtube_link        String?
+  logo                String?
+  favicon             String?
+  services_page_title String?
+  services_page_desc  String?
+  about_title         String?
+  about_content       String?
+  about_mission       String?
+  about_vision        String?
+  about_image         String?
+  gallery_page_title  String?
+  gallery_page_desc   String?
+  testimonial_limit_days  Int @default(15)
+  testimonial_limit_count Int @default(2)
+  updatedAt           DateTime @updatedAt
+}

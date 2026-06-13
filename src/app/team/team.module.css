@@ -1,0 +1,312 @@
+.teamSection {
+  padding: 80px 0;
+  min-height: 70vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4; /* Makes the photo taller (portrait aspect ratio) */
+  background-color: #f4f7f9; /* Light gray-blue background for the photo */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .photo {
+  transform: scale(1.1);
+  filter: brightness(0.8);
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 165, 233, 0.25); /* changed from 0.55 to 0.25 */
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2;
+}
+
+.card:hover .hoverOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  text-align: center;
+  background-color: var(--secondary-color); /* Bright blue bottom like in the image */
+  color: white;
+}
+
+.name {
+  font-size: 1.05rem;
+  color: white;
+  margin: 0;
+  font-weight: 700;
+}
+
+.title {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.specialization {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  margin-bottom: 2px;
+}
+
+.clickHint {
+  margin-top: 6px;
+  background-color: white;
+  color: var(--secondary-color);
+  padding: 4px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover .clickHint {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.biography {
+  margin-top: 16px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.emptyState h3 {
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  color: #7f8c8d;
+}
+
+.detailContainer {
+  padding: 60px 0 100px 0;
+  min-height: 70vh;
+}
+
+.detailHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.detailNameBadge {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 6px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.detailHeader h1 {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.detailHeader p {
+  color: #555;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.detailLayout {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.detailSidebar {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detailPhotoBox {
+  background-color: #f4f7f9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3/4;
+}
+
+.detailApptBtn {
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: block;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.detailApptBtn:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.detailInfoGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.detailInfoBox {
+  background-color: #f4f7f9;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detailInfoBox.halfWidth {
+  grid-column: span 6;
+}
+
+.detailInfoBox.wideWidth {
+  grid-column: span 8;
+}
+
+.detailInfoBox.narrowWidth {
+  grid-column: span 4;
+}
+
+.detailInfoBox.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.boxLabel {
+  color: var(--secondary-color);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+  opacity: 0.85;
+}
+
+.boxValue {
+  color: var(--text-color);
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.boxText {
+  color: var(--text-color);
+  font-weight: 300;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .detailLayout {
+    flex-direction: column;
+  }
+  .detailSidebar {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .detailInfoGrid {
+    grid-template-columns: 1fr;
+  }
+}

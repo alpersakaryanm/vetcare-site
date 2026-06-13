@@ -1,0 +1,319 @@
+/* ══════════════════════════════════════════
+   1. HERO GRADIENT
+   ══════════════════════════════════════════ */
+.heroGradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #bae6fd 100%);
+  padding: 80px 0 100px;
+  text-align: center;
+  color: #0f172a;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.heroTitle {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* ══════════════════════════════════════════
+   2. CONTENT SECTION
+   ══════════════════════════════════════════ */
+.contentSection {
+  margin-top: -60px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 10;
+}
+
+.serviceRow {
+  display: block;
+  margin-bottom: 100px;
+}
+
+.serviceRow::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.serviceContent {
+  width: 100%;
+}
+
+.serviceTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #116892;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+.serviceDescription {
+  color: var(--text-color);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-weight: 300;
+  white-space: pre-wrap;
+}
+
+.servicePrice {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: rgba(52, 152, 219, 0.08);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  letter-spacing: 0.5px;
+}
+
+.serviceImageWrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4/3;
+  background-color: #f4f7f9;
+  width: 35%;
+  max-width: 400px;
+  float: right;
+  margin: 8px 0 20px 30px;
+}
+
+.serviceImage {
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.serviceRow:hover .serviceImage {
+  transform: scale(1.03);
+}
+
+@media (max-width: 900px) {
+  .serviceRow {
+    margin-bottom: 60px;
+  }
+  .serviceImageWrapper {
+    float: none;
+    width: 100%;
+    margin: 0 0 30px 0;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.emptyState h3 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.emptyState p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+/* ══════════════════════════════════════
+   TEAM CARD STYLES FOR SERVICES
+   ══════════════════════════════════════ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-color: #f4f7f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  transition: transform var(--transition-slow), filter 0.3s;
+}
+
+.card:hover .photo {
+  transform: scale(1.1);
+  filter: brightness(0.8);
+}
+
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 165, 233, 0.25); /* reduced opacity for glass effect */
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2;
+}
+
+.card:hover .hoverOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.name {
+  font-size: 1.15rem;
+  color: white;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.clickHint {
+  margin-top: 4px;
+  background-color: white;
+  color: var(--secondary-color);
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover .clickHint {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* ══════════════════════════════════════
+   DETAIL PAGE: OTHER SERVICES GRID
+   ══════════════════════════════════════ */
+.indexGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.indexCard {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+}
+
+.indexCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--secondary-color);
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.indexCard:hover .iconWrapper {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.indexCardIcon {
+  transition: color var(--transition-fast);
+}
+
+.indexCardTitle {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  margin: 0;
+  font-weight: 700;
+  transition: color var(--transition-fast);
+}
+
+.indexCard:hover .indexCardTitle {
+  color: var(--secondary-color);
+}
+
+.indexCard:hover .hoverOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+

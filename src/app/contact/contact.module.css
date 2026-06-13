@@ -1,0 +1,171 @@
+.contactSection {
+  padding: 80px 0;
+  background: #f8fafc;
+  min-height: 70vh;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+
+.headerLeft {
+  max-width: 600px;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.sectionBadge i {
+  color: #1a8cc4;
+}
+
+.sectionBadge span {
+  color: #1a8cc4;
+}
+
+.headerTitle {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #1e293b;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+}
+
+.headerTitle span {
+  font-weight: 800;
+  color: #1a8cc4;
+}
+
+.separator {
+  width: 60px;
+  height: 4px;
+  background: #e2e8f0;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.separator::after {
+  content: '';
+  position: absolute;
+  left: 0; top: -2px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.headerDesc {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    flex-direction: column;
+  }
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 24px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: #eff6ff;
+  color: #1a8cc4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.cardText {
+  flex: 1;
+  text-align: left;
+}
+
+.card h3 {
+  color: #1e293b;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.card p {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.arrowIcon {
+  color: #93c5fd;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover .arrowIcon {
+  transform: translate(2px, -2px);
+  color: #1a8cc4;
+}
+
+.lowerSection {
+  margin-top: 60px;
+}
+
+.mapWrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  height: 350px;
+}
+
+.mapWrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

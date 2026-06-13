@@ -1,0 +1,202 @@
+/* ════════════════════════════════════════════════════════
+   NAVBAR  —  Light Gray Rounded Bar with Blue Dropdown
+   ════════════════════════════════════════════════════════ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 15px 20px; /* Üstten ve yanlardan boşluk */
+  background: transparent; /* Arka plan saydam, sadece bar görünecek */
+  pointer-events: none; /* Boşluklara tıklamayı arka plana geçirir */
+}
+
+/* ── Ana Bar Kapsayıcısı ────────────────────────────────── */
+.navContainer {
+  pointer-events: auto; /* Bar içine tıklanabilsin */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  height: 54px;
+  
+  /* Mavi arka plan */
+  background: linear-gradient(to right, #1a8cc4 0%, #116892 100%);
+  border-radius: 10px;
+  
+  /* Hafif 3D efekti ve gölge */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid #0f5c82;
+  border-bottom-color: #0c4d6d;
+
+  transition: opacity 0.3s ease;
+}
+
+.navScrolled {
+  opacity: 0.85; /* Kaydırıldığında görünürlüğü azalt */
+}
+
+.navContainer:hover {
+  opacity: 1; /* Üzerine gelindiğinde netleşsin */
+}
+
+/* ── Sekme (Tab) Kapsayıcısı ────────────────────────────── */
+.tabWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid rgba(255, 255, 255, 0.1); /* Ayırıcı çizgi (sağ) */
+  border-left: 1px solid rgba(0, 0, 0, 0.15);  /* Ayırıcı çizgi 3D ışık efekti (sol) */
+}
+
+.tabWrapper:first-child {
+  border-left: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.tabWrapper:last-child {
+  border-right: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Aktif sekme kapsayıcısı için kenarlıkları düzenle */
+.tabActiveWrapper {
+  border-right-color: transparent;
+}
+
+.tab {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 0.95rem;
+  font-weight: 600; /* Biraz daha belirgin olması için kalınlaştırdık */
+  color: #ffffff; /* Beyaz yazı rengi */
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.tab:hover:not(.tabActive) {
+  color: #ffffff; /* Hover'da renk aynı */
+  background: rgba(255, 255, 255, 0.1); /* Hover efekti çok açık beyaz */
+}
+
+.tabWrapper:first-child .tab {
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+
+.tabWrapper:last-child .tab {
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+
+/* ── Aktif Sekme (Basık Efekti) ─────────────────────────── */
+.tabActive {
+  background: rgba(0, 0, 0, 0.15); /* Aktif sekme arka planı daha koyu */
+  color: #ffffff; 
+  font-weight: 700;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  margin-left: -1px;
+}
+
+.tabWrapper:first-child .tabActive {
+  border-left: none;
+  margin-left: 0;
+}
+
+/* Çıkış sekmesi özel stil */
+.tabLogout {
+  color: #d9534f;
+}
+.tabLogout:hover {
+  color: #c9302c;
+  background: rgba(217, 83, 79, 0.05);
+}
+
+/* ══════════════════════════════════════════════════════════
+   AÇILIR MENÜ (Dropdown)
+   ══════════════════════════════════════════════════════════ */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 10px; /* margin yerine padding kullanarak boşluğu tıklanabilir yapıyoruz (hover kapanmasını önler) */
+  z-index: 1050;
+  width: 180px;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+  animation: dropFadeIn 0.2s ease-out forwards;
+}
+
+@keyframes dropFadeIn {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ── Üstteki Ok (Arrow) ─────────────────────────────────── */
+.dropdownArrow {
+  position: absolute;
+  top: 0; /* Padding alanının en üstüne yerleştir */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1a8cc4; /* Mavi tonu */
+}
+
+/* ── Dropdown İçeriği ───────────────────────────────────── */
+.dropdownContent {
+  background: linear-gradient(to bottom, #1a8cc4 0%, #116892 100%);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.2s ease;
+}
+
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+.dropdownItem:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dropdownTitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.dropdownSub {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
