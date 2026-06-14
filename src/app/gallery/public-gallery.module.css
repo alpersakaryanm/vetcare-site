@@ -6,10 +6,10 @@
    1. HERO GRADIENT
    ══════════════════════════════════════════ */
 .heroGradient {
-  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #bae6fd 100%);
-  padding: 80px 0 100px;
+  background: linear-gradient(to right, #1a8cc4 0%, #116892 100%);
+  padding: 160px 0 80px; /* Account for fixed navbar */
   text-align: center;
-  color: #0f172a;
+  color: white;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   position: relative;
