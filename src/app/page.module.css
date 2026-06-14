@@ -272,8 +272,8 @@
 }
 
 .paw2 {
-  top: 15%;
-  right: -5%;
+  top: 5%;
+  left: -10%;
   animation: floatPaw 12s infinite ease-in-out alternate-reverse;
 }
 
