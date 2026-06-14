@@ -162,9 +162,11 @@
   padding: 8px 18px !important;
   margin-left: 10px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3); /* Softer, non-neon shadow */
   animation: fireGlow 3s linear infinite;
   border: 1px solid rgba(255,255,255,0.4);
+  position: relative;
+  overflow: hidden;
 }
 
 .tabPanel::before {
@@ -172,12 +174,35 @@
   margin-right: 6px;
   display: inline-block;
   animation: sparkle 1.5s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 2;
+}
+
+/* Shine reflection element */
+.tabPanel::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(45deg) translateX(-300%);
+  transition: transform 0s;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .tabPanel:hover {
   animation: fireGlow 1.5s linear infinite;
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); /* Normal elegant shadow */
+}
+
+/* On hover, trigger the shine reflection sweep */
+.tabPanel:hover::after {
+  transform: rotate(45deg) translateX(500%);
+  transition: transform 0.6s ease-in-out;
 }
 
 @keyframes fireGlow {
