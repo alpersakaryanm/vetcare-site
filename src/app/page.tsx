@@ -231,7 +231,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. Blog Preview Section (Experimental) */}
+      {/* 4. Team Section */}
+      <TeamCarousel team={teamMembers} />
+
+      {/* 5. Blog Preview Section (Experimental) */}
       <section className={styles.blogPreviewSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
@@ -268,10 +271,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 5. Team Section */}
-      <TeamCarousel team={teamMembers} />
-
-      {/* 5. Testimonials Section */}
+      {/* 6. Testimonials Section */}
       <TestimonialsCarousel testimonials={testimonials} session={session} />
 
     </main>
