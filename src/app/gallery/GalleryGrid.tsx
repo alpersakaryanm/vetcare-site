@@ -101,7 +101,7 @@ export default function GalleryGrid({ images }: { images: GalleryItem[] }) {
                     className={`${styles.floatingPill} ${isEven ? styles.pillRight : styles.pillLeft}`}
                     style={{ animationDelay: `${(index * 0.73) % 4}s`, animationDuration: `${6 + ((index * 0.5) % 2)}s` }}
                   >
-                    <i className="fa-solid fa-paw" style={{color: '#0ea5e9'}}></i> {img.category}
+                    <i className="fa-solid fa-paw" style={{color: '#0ea5e9'}}></i> {img.title || img.category}
                   </div>
                 </div>
                 

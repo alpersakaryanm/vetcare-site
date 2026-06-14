@@ -53,7 +53,8 @@ export async function updateSettings(id: string | null, formData: FormData) {
     // Create unique filename
     const filename = `${Date.now()}-hero-${heroImageFile.name.replace(/\s+/g, '-')}`;
     
-    heroImageUrl = await uploadFileToSupabase('vet-uploads', filename, buffer, heroImageFile.type);
+    // Hero image için optimizasyonu atla (skipOptimization: true)
+    heroImageUrl = await uploadFileToSupabase('vet-uploads', filename, buffer, heroImageFile.type, true);
     
     // If updating, delete old image
     if (id) {

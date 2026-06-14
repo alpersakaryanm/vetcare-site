@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import sharp from 'sharp';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -12,18 +13,45 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
  * @param path - The path/filename to save as
  * @param fileBuffer - The file data
  * @param contentType - The MIME type of the file
+ * @param skipOptimization - If true, skips sharp image compression
  * @returns The public URL of the uploaded file or throws an error
  */
 export async function uploadFileToSupabase(
   bucket: string,
   path: string,
   fileBuffer: Buffer,
-  contentType: string
+  contentType: string,
+  skipOptimization: boolean = false
 ): Promise<string> {
+  let finalBuffer = fileBuffer;
+  let finalContentType = contentType;
+  let finalPath = path;
+
+  // Optimizasyon
+  if (!skipOptimization && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
+    try {
+      finalBuffer = await sharp(fileBuffer)
+        .resize({ width: 1000, withoutEnlargement: true })
+        .webp({ quality: 60 })
+        .toBuffer();
+      
+      finalContentType = 'image/webp';
+      
+      const lastDotIndex = finalPath.lastIndexOf('.');
+      if (lastDotIndex !== -1) {
+        finalPath = finalPath.substring(0, lastDotIndex) + '.webp';
+      } else {
+        finalPath = finalPath + '.webp';
+      }
+    } catch (err) {
+      console.error("Görsel optimizasyon hatası:", err);
+    }
+  }
+
   const { data, error } = await supabase.storage
     .from(bucket)
-    .upload(path, fileBuffer, {
-      contentType,
+    .upload(finalPath, finalBuffer, {
+      contentType: finalContentType,
       upsert: true,
     });
 
@@ -33,7 +61,7 @@ export async function uploadFileToSupabase(
 
   const { data: publicUrlData } = supabase.storage
     .from(bucket)
-    .getPublicUrl(path);
+    .getPublicUrl(finalPath);
 
   return publicUrlData.publicUrl;
 }
