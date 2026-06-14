@@ -216,8 +216,21 @@
 }
 
 .tabLogout {
-  color: #c9302c;
-  background: rgba(217, 83, 79, 0.05);
+  color: #b91c1c;
+  background: #fee2e2;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 8px 16px !important;
+  margin-left: 8px;
+  border: 1px solid #fca5a5;
+  transition: all 0.2s ease;
+}
+
+.tabLogout:hover {
+  background: #fecaca;
+  color: #991b1b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
 }
 
 /* ══════════════════════════════════════════════════════════
