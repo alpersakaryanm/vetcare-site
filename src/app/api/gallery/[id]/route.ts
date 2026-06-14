@@ -6,7 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  props: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,6 +16,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Bu işlemi yapmak için yetkiniz yok." }, { status: 401 });
     }
 
+    const params = await props.params;
     const { id } = params;
 
     const item = await prisma.gallery.findUnique({ where: { id } });
