@@ -32,7 +32,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
 
   return (
     <main className={styles.main}>
-      <section className={styles.hero} style={{ padding: "120px 0 40px", minHeight: "auto" }}>
+      <section className={styles.hero} style={{ padding: "80px 0 100px", minHeight: "auto" }}>
         <div className={styles.orb1}></div>
         <div className={styles.orb2}></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
