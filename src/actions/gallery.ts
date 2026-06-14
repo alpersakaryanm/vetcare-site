@@ -51,8 +51,10 @@ export async function deleteGalleryItem(id: string) {
       where: { id },
     });
     
-    revalidatePath("/admin/gallery");
-    revalidatePath("/gallery");
+    // Vercel'deki revalidatePath çökmelerini önlemek için kaldırıldı.
+    // İstemci tarafında router.refresh() kullanılıyor.
+    // revalidatePath("/admin/gallery");
+    // revalidatePath("/gallery");
     return { success: true };
   } catch (error) {
     console.error("Error deleting gallery item:", error);
