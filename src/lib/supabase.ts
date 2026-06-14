@@ -5,14 +5,6 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Sharp kütüphanesini güvenli bir şekilde yükle (Windows'ta çökmeyi önler, Vercel'de çalışır)
-let sharp: any = null;
-try {
-  sharp = require('sharp');
-} catch (e) {
-  console.warn("Sharp kütüphanesi yüklenemedi. Görsel optimizasyonu atlanacak.");
-}
-
 /**
  * Uploads a file buffer to Supabase Storage and returns the public URL.
  * 
@@ -30,30 +22,9 @@ export async function uploadFileToSupabase(
   contentType: string,
   skipOptimization: boolean = false
 ): Promise<string> {
-  let finalBuffer = fileBuffer;
-  let finalContentType = contentType;
-  let finalPath = path;
-
-  // Optimizasyon
-  if (!skipOptimization && sharp && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
-    try {
-      finalBuffer = await sharp(fileBuffer)
-        .resize({ width: 800, withoutEnlargement: true })
-        .webp({ quality: 40 })
-        .toBuffer();
-      
-      finalContentType = 'image/webp';
-      
-      const lastDotIndex = finalPath.lastIndexOf('.');
-      if (lastDotIndex !== -1) {
-        finalPath = finalPath.substring(0, lastDotIndex) + '.webp';
-      } else {
-        finalPath = finalPath + '.webp';
-      }
-    } catch (err) {
-      console.error("Görsel optimizasyon hatası:", err);
-    }
-  }
+  const finalBuffer = fileBuffer;
+  const finalContentType = contentType;
+  const finalPath = path;
 
   const { data, error } = await supabase.storage
     .from(bucket)

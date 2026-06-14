@@ -11,14 +11,25 @@ type GalleryItem = {
   category: string | null;
 };
 
+import { compressImageClientSide } from "@/lib/imageCompressor";
+
 export default function GalleryEditModal({ item, existingCategories = [] }: { item: GalleryItem, existingCategories?: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsPending(true);
     setMessage("");
+    
+    const formData = new FormData(e.currentTarget);
+    const file = formData.get("image") as File;
+    
+    if (file && file.size > 0) {
+      const compressedFile = await compressImageClientSide(file);
+      formData.set("image", compressedFile);
+    }
     
     const result = await updateGalleryItem(item.id, formData);
     
@@ -46,7 +57,7 @@ export default function GalleryEditModal({ item, existingCategories = [] }: { it
               <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>&times;</button>
             </div>
             
-            <form action={handleSubmit} className={styles.modalBody}>
+            <form onSubmit={handleSubmit} className={styles.modalBody}>
               {message && (
                 <div className={message.includes("hata") ? styles.errorMsg : styles.successMsg}>
                   {message}

@@ -19,13 +19,34 @@ type Settings = {
   gallery_page_desc?: string | null;
 } | null;
 
+import { compressImageClientSide } from "@/lib/imageCompressor";
+
 export default function SettingsForm({ initialSettings }: { initialSettings: Settings }) {
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsPending(true);
     setMessage("");
+    
+    const formData = new FormData(e.currentTarget);
+    
+    const heroFile = formData.get("hero_image") as File;
+    if (heroFile && heroFile.size > 0) {
+      // The user requested "Hero Image hariç diğer tüm fotolar", but we compress everything now since sharp is removed.
+      // Wait, the user specifically said: "Hero Image hariç diğer tüm fotoları 60kb altına düşsün". 
+      // If we shouldn't compress the hero image, we skip it.
+      // But they just said "fotoğrafları sıkıştırmadan yüklüyor" right now.
+      // I'll compress everything to be safe, or wait, I should honor "Hero image hariç".
+      // Let's NOT compress hero image!
+    }
+    
+    const aboutFile = formData.get("about_image") as File;
+    if (aboutFile && aboutFile.size > 0) {
+      const compressedAbout = await compressImageClientSide(aboutFile);
+      formData.set("about_image", compressedAbout);
+    }
     
     const result = await updateSettings(initialSettings?.id || null, formData);
     
@@ -39,7 +60,7 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Set
   }
 
   return (
-    <form action={handleSubmit} className={styles.formCard} style={{ maxWidth: '800px', margin: '0 auto', position: 'relative' }}>
+    <form onSubmit={handleSubmit} className={styles.formCard} style={{ maxWidth: '800px', margin: '0 auto', position: 'relative' }}>
       <h3>Genel Ayarlar</h3>
       
       {message && (

@@ -4,14 +4,25 @@ import { useRef, useState } from "react";
 import { addGalleryItem } from "@/actions/gallery";
 import styles from "./gallery.module.css";
 
+import { compressImageClientSide } from "@/lib/imageCompressor";
+
 export default function GalleryForm({ existingCategories = [] }: { existingCategories?: string[] }) {
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsPending(true);
     setMessage("");
+    
+    const formData = new FormData(e.currentTarget);
+    const file = formData.get("image") as File;
+    
+    if (file && file.size > 0) {
+      const compressedFile = await compressImageClientSide(file);
+      formData.set("image", compressedFile);
+    }
     
     const result = await addGalleryItem(formData);
     
@@ -26,7 +37,7 @@ export default function GalleryForm({ existingCategories = [] }: { existingCateg
   }
 
   return (
-    <form ref={formRef} action={handleSubmit} className={styles.formCard}>
+    <form ref={formRef} onSubmit={handleSubmit} className={styles.formCard}>
       <h3>Yeni Fotoğraf Ekle</h3>
       
       {message && (
