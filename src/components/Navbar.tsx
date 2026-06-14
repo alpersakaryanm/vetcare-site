@@ -147,7 +147,7 @@ export default function Navbar({ session, services = [] }: { session: any, servi
                 ) : (
                   <Link
                     href={item.href}
-                    className={`${styles.tab} ${active ? styles.tabActive : ""}`}
+                    className={`${styles.tab} ${active ? styles.tabActive : ""} ${item.href === "/admin" ? styles.tabPanel : ""}`}
                   >
                     {item.label}
                   </Link>

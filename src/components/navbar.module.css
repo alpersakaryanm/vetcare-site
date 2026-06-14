@@ -149,7 +149,48 @@
 .tabLogout {
   color: #d9534f;
 }
-.tabLogout:hover {
+
+/* ══════════════════════════════════════════════════════════
+   PANEL TAB (VIBRANT & ANIMATED)
+   ══════════════════════════════════════════════════════════ */
+.tabPanel {
+  background: linear-gradient(90deg, #f97316, #ef4444, #eab308, #f97316);
+  background-size: 300% auto;
+  color: white !important;
+  font-weight: 800 !important;
+  border-radius: 999px;
+  padding: 8px 18px !important;
+  margin-left: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+  animation: fireGlow 3s linear infinite;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.tabPanel::before {
+  content: "✨";
+  margin-right: 6px;
+  display: inline-block;
+  animation: sparkle 1.5s ease-in-out infinite alternate;
+}
+
+.tabPanel:hover {
+  animation: fireGlow 1.5s linear infinite;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+}
+
+@keyframes fireGlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0.8) rotate(-10deg); opacity: 0.8; }
+  100% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+}
+
+.tabLogout {
   color: #c9302c;
   background: rgba(217, 83, 79, 0.05);
 }
