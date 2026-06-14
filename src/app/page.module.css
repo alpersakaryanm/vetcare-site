@@ -239,7 +239,7 @@
 .heroImageWrapper {
   flex: 1;
   position: relative;
-  height: 450px;
+  height: 550px; /* Görselin boyutunu artırdık (450px -> 550px) */
   width: 100%;
   z-index: 1;
 }
@@ -313,12 +313,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  animation: floatImage 6s infinite ease-in-out alternate;
-}
-
-@keyframes floatImage {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-15px); }
+  /* Animasyon tamamen kaldırıldı, görsel sabit duracak */
 }
 
 /* Scroll indicator */
