@@ -28,7 +28,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   });
 
   return (
-    <section className={styles.servicesSection}>
+    <section className={styles.servicesSection} style={{ paddingTop: '120px', paddingBottom: '80px' }}>
       <div className="container">
         
         <div style={{ marginBottom: '40px' }}>
