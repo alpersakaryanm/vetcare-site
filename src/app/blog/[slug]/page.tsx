@@ -41,34 +41,61 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
       </section>
 
       <section className={styles.detailSection}>
-        <div className="container">
-          <article className={styles.detailArticle}>
-            <div className={styles.detailHeader}>
-              {post.category && <div className={styles.detailCategory}>{post.category}</div>}
+        <div className={styles.detailCard}>
+          <div className={styles.aboutGrid}>
+            
+            {/* Left Side: Content */}
+            <div className={styles.aboutTextContent}>
+              <div className={styles.sectionBadge}>
+                <i className="fa-solid fa-pen-nib"></i> Blog <span>—</span>
+              </div>
+              
               <h1>{post.title}</h1>
               
+              <div className={styles.separator}></div>
+              
               <div className={styles.detailMeta}>
+                {post.category && <span><i className="fa-solid fa-tag"></i> {post.category}</span>}
                 <span><i className="fa-regular fa-calendar"></i> {post.published_at?.toLocaleDateString("tr-TR")}</span>
                 {post.author && <span><i className="fa-regular fa-user"></i> {post.author}</span>}
               </div>
-            </div>
 
-            {post.cover_image && (
-              <div className={styles.detailImageWrapper}>
-                <Image 
-                  src={post.cover_image} 
-                  alt={post.title} 
-                  fill 
-                  style={{ objectFit: "cover" }} 
-                  priority
-                />
+              <p>{post.content}</p>
+            </div>
+            
+            {/* Right Side: Image with Floating Pills */}
+            <div className={styles.aboutImageContent}>
+              <div className={styles.blueShape}></div>
+              
+              <div className={styles.aboutImageWrapper}>
+                {post.cover_image ? (
+                  <Image 
+                    src={post.cover_image} 
+                    alt={post.title} 
+                    fill 
+                    style={{ objectFit: "cover" }} 
+                    priority
+                  />
+                ) : (
+                  <div style={{width: '100%', height: '100%', background: '#e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <i className="fa-solid fa-paw" style={{fontSize: '5rem', color: '#cbd5e1'}}></i>
+                  </div>
+                )}
               </div>
-            )}
-
-            <div className={styles.detailContent}>
-              {post.content}
+              
+              {/* Fake Floating Pills for aesthetics as requested */}
+              <div className={`${styles.floatingPill} ${styles.pill1}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> Uzman Bilgisi
+              </div>
+              <div className={`${styles.floatingPill} ${styles.pill2}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> VetCare
+              </div>
+              <div className={`${styles.floatingPill} ${styles.pill3}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> Güncel İçerik
+              </div>
             </div>
-          </article>
+            
+          </div>
         </div>
       </section>
     </main>
