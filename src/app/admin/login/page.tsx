@@ -13,12 +13,12 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Zaten giriş yapılmışsa direkt panele yönlendir
+  // Zaten giriş yapılmışsa direkt anasayfaya yönlendir
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/admin");
+      window.location.href = "/";
     }
-  }, [status, router]);
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export default function LoginPage() {
     if (res?.error) {
       setError("Geçersiz e-posta veya şifre");
     } else {
-      router.push("/admin");
+      window.location.href = "/";
     }
   };
 
