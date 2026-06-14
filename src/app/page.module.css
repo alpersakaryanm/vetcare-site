@@ -264,37 +264,23 @@
 
 .floatingPaw {
   position: absolute;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 2rem;
+  color: transparent;
+  -webkit-text-stroke: 3px rgba(15, 23, 42, 0.4); /* Yarı saydam siyah/lacivert kontür */
+  font-size: 14rem; /* Devasa boyut */
   z-index: 0;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
-}
-
-.paw1 {
-  top: 5%;
-  left: 10%;
-  animation: floatPaw 6s infinite ease-in-out alternate;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
 }
 
 .paw2 {
-  top: 50%;
-  right: 5%;
-  font-size: 2.5rem;
-  animation: floatPaw 8s infinite ease-in-out alternate-reverse;
-}
-
-.paw3 {
-  bottom: 15%;
-  left: 15%;
-  font-size: 1.5rem;
-  animation: floatPaw 5s infinite ease-in-out alternate;
-  animation-delay: 2s;
+  top: 15%;
+  right: -5%;
+  animation: floatPaw 12s infinite ease-in-out alternate-reverse;
 }
 
 @keyframes floatPaw {
-  0% { transform: translateY(0) rotate(-15deg) scale(1); opacity: 0.4; }
-  50% { opacity: 0.9; }
-  100% { transform: translateY(-25px) rotate(20deg) scale(1.1); opacity: 0.4; }
+  0% { transform: translateY(0) rotate(-5deg) scale(1); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-40px) rotate(10deg) scale(1.05); opacity: 0.8; }
 }
 
 .heroImageInner {

@@ -83,9 +83,7 @@ export default async function Home() {
             <div className={styles.heroImageWrapper}>
               <div className={styles.glowEffect}></div>
               
-              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw1}`}></i>
               <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw2}`}></i>
-              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw3}`}></i>
 
               <div className={styles.heroImageInner}>
                 <Image 
