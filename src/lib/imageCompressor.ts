@@ -25,19 +25,40 @@ export async function compressImageClientSide(file: File): Promise<File> {
         
         ctx.drawImage(img, 0, 0, width, height);
         
-        // Tüm tarayıcılarda (eski Safari dahil) %100 çalışması için JPEG formatında %70 kalite ile kaydet
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const newFileName = file.name.replace(/\.[^/.]+$/, "") + ".jpeg";
-            const newFile = new File([blob], newFileName, {
-              type: 'image/jpeg',
-              lastModified: Date.now(),
-            });
-            resolve(newFile);
-          } else {
-            resolve(file); // Hata durumunda orijinali dön
-          }
-        }, 'image/jpeg', 0.7); 
+        // WebP formatında 50 KB altına inene kadar kaliteyi düşürerek sıkıştır
+        let quality = 0.7;
+        const targetSize = 50 * 1024; // 50 KB
+        
+        const compress = () => {
+          canvas.toBlob((blob) => {
+            if (!blob) return resolve(file);
+            
+            // Eğer tarayıcı WebP desteklemiyorsa otomatik PNG üretir, bu yüzden JPEG'e zorla düşürüyoruz
+            if (blob.type !== 'image/webp') {
+              canvas.toBlob((fallbackBlob) => {
+                if (!fallbackBlob) return resolve(file);
+                resolve(new File([fallbackBlob], file.name.replace(/\.[^/.]+$/, "") + ".jpeg", { type: 'image/jpeg', lastModified: Date.now() }));
+              }, 'image/jpeg', 0.5);
+              return;
+            }
+
+            // 50 KB'dan büyükse kaliteyi düşürüp tekrar dene
+            if (blob.size > targetSize && quality > 0.1) {
+              quality -= 0.15;
+              compress();
+            } else {
+              // 50 KB altındaysa (veya kalite çok düştüyse) kaydet
+              const newFileName = file.name.replace(/\.[^/.]+$/, "") + ".webp";
+              const newFile = new File([blob], newFileName, {
+                type: 'image/webp',
+                lastModified: Date.now(),
+              });
+              resolve(newFile);
+            }
+          }, 'image/webp', quality);
+        };
+        
+        compress();
       };
       img.onerror = () => resolve(file);
       img.src = event.target?.result as string;
