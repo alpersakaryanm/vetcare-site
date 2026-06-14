@@ -31,7 +31,7 @@ export default async function VeterinarianDetailPage({ params }: { params: Promi
   const placeholderImage = "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070&auto=format&fit=crop";
 
   return (
-    <section className={styles.detailContainer}>
+    <section className={styles.detailContainer} style={{ marginTop: '140px' }}>
       <div className="container">
         <div style={{ marginBottom: '24px' }}>
           <Link href="/team" style={{ color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none' }}>
