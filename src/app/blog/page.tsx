@@ -53,14 +53,9 @@ export default async function BlogPage() {
                   </div>
                   
                   <div className={styles.cardContent}>
-                    <div className={styles.meta}>
-                      <span><i className="fa-regular fa-calendar"></i> {post.published_at?.toLocaleDateString("tr-TR")}</span>
-                      {post.author && <span><i className="fa-regular fa-user"></i> {post.author}</span>}
-                    </div>
                     <h2>{post.title}</h2>
-                    <p>{post.content.length > 120 ? post.content.substring(0, 120) + '...' : post.content}</p>
-                    <div className={styles.readMore}>
-                      Devamını Oku <i className="fa-solid fa-arrow-right"></i>
+                    <div className={styles.detailsBtn}>
+                      Detaylar
                     </div>
                   </div>
                 </Link>
