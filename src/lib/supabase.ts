@@ -31,8 +31,8 @@ export async function uploadFileToSupabase(
   if (!skipOptimization && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
     try {
       finalBuffer = await sharp(fileBuffer)
-        .resize({ width: 1000, withoutEnlargement: true })
-        .webp({ quality: 60 })
+        .resize({ width: 800, withoutEnlargement: true })
+        .webp({ quality: 40 })
         .toBuffer();
       
       finalContentType = 'image/webp';
