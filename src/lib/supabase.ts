@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import sharp from 'sharp';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -30,6 +29,7 @@ export async function uploadFileToSupabase(
   // Optimizasyon
   if (!skipOptimization && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
     try {
+      const sharp = (await import('sharp')).default;
       finalBuffer = await sharp(fileBuffer)
         .resize({ width: 800, withoutEnlargement: true })
         .webp({ quality: 40 })
