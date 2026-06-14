@@ -668,3 +668,26 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 110px; /* Menünün altında kalmaması için ekstra boşluk */
+  }
+  .heroText h1 {
+    font-size: 2.5rem;
+  }
+  .heroText h2 {
+    font-size: 1.5rem;
+  }
+  .heroImageWrapper {
+    height: 400px;
+    margin-top: 0;
+  }
+  .floatingPaw {
+    width: 4rem;
+    height: 4rem;
+  }
+  .pawCat {
+    width: 3rem;
+    height: 3rem;
+  }
+}
