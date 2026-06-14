@@ -50,6 +50,12 @@ export default async function BlogPage() {
                       </div>
                     )}
                     {post.category && <div className={styles.categoryBadge}>{post.category}</div>}
+                    
+                    {/* Sliding Hover Overlay */}
+                    <div className={styles.hoverOverlay}>
+                      <i className="fa-solid fa-book-open" style={{ fontSize: '2.5rem', marginBottom: '12px' }}></i>
+                      <span style={{ fontWeight: '700', fontSize: '1.2rem', letterSpacing: '1px' }}>Okumaya Başla</span>
+                    </div>
                   </div>
                   
                   <div className={styles.cardContent}>
