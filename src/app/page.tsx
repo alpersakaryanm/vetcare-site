@@ -21,6 +21,11 @@ export default async function Home() {
     take: 6,
   });
 
+  const latestBlogPosts = await prisma.blogPost.findMany({
+    orderBy: { published_at: "desc" },
+    take: 6,
+  });
+
   const settings = await prisma.settings.findFirst();
   const numericWhatsapp = settings?.whatsapp ? settings.whatsapp.replace(/\D/g, "") : "";
   const clinicName = settings?.clinic_name || "VetCare";
@@ -226,7 +231,44 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. Team Section */}
+      {/* 4. Blog Preview Section (Experimental) */}
+      <section className={styles.blogPreviewSection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2>Blog'dan <span>Son Yazılar</span></h2>
+            <p>Sevimli dostlarımız hakkında faydalı bilgiler ve ipuçları.</p>
+          </div>
+          
+          <div className={styles.blogGrid}>
+            {latestBlogPosts.map((post) => (
+              <Link href={`/blog/${post.slug}`} key={post.id} className={styles.blogCardCompact}>
+                <div className={styles.blogImageCompact}>
+                  {post.cover_image ? (
+                    <Image src={post.cover_image} alt={post.title} fill style={{ objectFit: "cover" }} />
+                  ) : (
+                    <div className={styles.placeholderCompact}><i className="fa-solid fa-paw"></i></div>
+                  )}
+                  {post.category && <div className={styles.categoryCompact}>{post.category}</div>}
+                </div>
+                <div className={styles.blogContentCompact}>
+                  <h3>{post.title}</h3>
+                  <div className={styles.blogMetaCompact}>
+                    <span><i className="fa-regular fa-calendar"></i> {post.published_at?.toLocaleDateString("tr-TR")}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div style={{ textAlign: "center", marginTop: "30px" }}>
+            <Link href="/blog" className={styles.viewAllBlogBtn}>
+              Tüm Blog Yazılarını Gör <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Team Section */}
       <TeamCarousel team={teamMembers} />
 
       {/* 5. Testimonials Section */}
