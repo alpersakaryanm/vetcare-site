@@ -127,6 +127,7 @@ model Settings {
   about_image         String?
   gallery_page_title  String?
   gallery_page_desc   String?
+  hero_image          String?
   testimonial_limit_days  Int @default(15)
   testimonial_limit_count Int @default(2)
   updatedAt           DateTime @updatedAt

@@ -14,6 +14,7 @@ type Settings = {
   about_mission: string | null;
   about_vision: string | null;
   about_image: string | null;
+  hero_image?: string | null;
   gallery_page_title?: string | null;
   gallery_page_desc?: string | null;
 } | null;
@@ -56,6 +57,23 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Set
           required 
           defaultValue={initialSettings?.clinic_name || "Veterinary Clinic"} 
         />
+      </div>
+
+      <h3 style={{ marginTop: '30px' }}>Anasayfa Ayarları</h3>
+      <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '16px' }}>Anasayfada hekimin göründüğü ana karşılama fotoğrafını buradan değiştirebilirsiniz.</p>
+
+      {initialSettings?.hero_image && (
+        <div style={{ marginBottom: "16px" }}>
+          <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "8px" }}>Mevcut Anasayfa Görseli</p>
+          <div style={{ position: "relative", width: "150px", height: "100px", borderRadius: "8px", overflow: "hidden" }}>
+            <img src={initialSettings.hero_image} alt="Hero Image" style={{ width: '100%', height: '100%', objectFit: "cover" }} />
+          </div>
+        </div>
+      )}
+
+      <div className={styles.inputGroup}>
+        <label htmlFor="hero_image">Anasayfa Ana Görseli (Hero Image)</label>
+        <input type="file" id="hero_image" name="hero_image" accept="image/*" />
       </div>
 
       <h3 style={{ marginTop: '30px' }}>Hizmetler Sayfası Ayarları</h3>

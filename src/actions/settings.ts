@@ -18,19 +18,21 @@ export async function updateSettings(id: string | null, formData: FormData) {
   const gallery_page_desc = formData.get("gallery_page_desc") as string;
   
   const imageFile = formData.get("about_image") as File | null;
+  const heroImageFile = formData.get("hero_image") as File | null;
   let imageUrl = undefined;
+  let heroImageUrl = undefined;
 
   if (!clinic_name) {
     return { error: "Klinik adı zorunludur." };
   }
 
-  // Handle image upload if a new file is provided
+  // Handle about image upload if a new file is provided
   if (imageFile && imageFile.size > 0) {
     const bytes = await imageFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
     
     // Create unique filename
-    const filename = `${Date.now()}-${imageFile.name.replace(/\s+/g, '-')}`;
+    const filename = `${Date.now()}-about-${imageFile.name.replace(/\s+/g, '-')}`;
     
     imageUrl = await uploadFileToSupabase('vet-uploads', filename, buffer, imageFile.type);
     
@@ -39,6 +41,25 @@ export async function updateSettings(id: string | null, formData: FormData) {
       const oldSettings = await prisma.settings.findUnique({ where: { id } });
       if (oldSettings && oldSettings.about_image) {
         await deleteFileFromSupabase('vet-uploads', oldSettings.about_image);
+      }
+    }
+  }
+
+  // Handle hero image upload if a new file is provided
+  if (heroImageFile && heroImageFile.size > 0) {
+    const bytes = await heroImageFile.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    
+    // Create unique filename
+    const filename = `${Date.now()}-hero-${heroImageFile.name.replace(/\s+/g, '-')}`;
+    
+    heroImageUrl = await uploadFileToSupabase('vet-uploads', filename, buffer, heroImageFile.type);
+    
+    // If updating, delete old image
+    if (id) {
+      const oldSettings = await prisma.settings.findUnique({ where: { id } });
+      if (oldSettings && oldSettings.hero_image) {
+        await deleteFileFromSupabase('vet-uploads', oldSettings.hero_image);
       }
     }
   }
@@ -57,6 +78,9 @@ export async function updateSettings(id: string | null, formData: FormData) {
 
   if (imageUrl) {
     data.about_image = imageUrl;
+  }
+  if (heroImageUrl) {
+    data.hero_image = heroImageUrl;
   }
 
   try {

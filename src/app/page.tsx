@@ -95,7 +95,7 @@ export default async function Home() {
 
               <div className={styles.heroImageInner}>
                 <Image 
-                  src="/images/hero_vet_clinic_1781281471313.png" 
+                  src={settings?.hero_image || "/images/hero_vet_clinic_1781281471313.png"} 
                   alt="Veteriner ve Sevimli Köpek" 
                   fill 
                   style={{ objectFit: 'contain', objectPosition: 'bottom' }} 
