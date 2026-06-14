@@ -241,6 +241,7 @@
   position: relative;
   height: 700px; /* Görselin boyutunu daha da artırdık */
   width: 100%;
+  margin-top: -80px; /* Görseli biraz daha yukarı aldık */
   z-index: 1;
 }
 
