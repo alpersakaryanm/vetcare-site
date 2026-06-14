@@ -81,13 +81,21 @@ export default async function Home() {
             </div>
 
             <div className={styles.heroImageWrapper}>
-              <Image 
-                src="/images/hero_vet_clinic_1781281471313.png" 
-                alt="Veteriner ve Sevimli Köpek" 
-                fill 
-                style={{ objectFit: 'contain', objectPosition: 'bottom' }} 
-                priority
-              />
+              <div className={styles.glowEffect}></div>
+              
+              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw1}`}></i>
+              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw2}`}></i>
+              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw3}`}></i>
+
+              <div className={styles.heroImageInner}>
+                <Image 
+                  src="/images/hero_vet_clinic_1781281471313.png" 
+                  alt="Veteriner ve Sevimli Köpek" 
+                  fill 
+                  style={{ objectFit: 'contain', objectPosition: 'bottom' }} 
+                  priority
+                />
+              </div>
             </div>
             
           </div>
