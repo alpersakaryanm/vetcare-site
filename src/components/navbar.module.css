@@ -158,11 +158,11 @@
   background-size: 300% auto;
   color: white !important;
   font-weight: 800 !important;
-  border-radius: 999px;
+  border-radius: 6px; /* Removed oval shape */
   padding: 8px 18px !important;
   margin-left: 10px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3); /* Softer, non-neon shadow */
+  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
   animation: fireGlow 3s linear infinite;
   border: 1px solid rgba(255,255,255,0.4);
   position: relative;
@@ -196,7 +196,7 @@
 .tabPanel:hover {
   animation: fireGlow 1.5s linear infinite;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); /* Normal elegant shadow */
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
 }
 
 /* On hover, trigger the shine reflection sweep */
@@ -216,8 +216,8 @@
 }
 
 .tabLogout {
-  color: #64748b; /* Elegant, muted slate color matching the site's text */
-  font-weight: 500;
+  color: #9f1239; /* Highly readable, elegant dark rose/red */
+  font-weight: 700;
   padding: 12px 16px;
   background: transparent;
   border: none;
@@ -226,7 +226,7 @@
 }
 
 .tabLogout:hover {
-  color: #475569; /* Just slightly darker slate on hover, no animations */
+  color: #e11d48; /* Slightly brighter rose on hover */
 }
 
 /* ══════════════════════════════════════════════════════════
