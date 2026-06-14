@@ -37,32 +37,54 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
         </div>
 
-        <div className={styles.serviceRow} style={{ marginTop: '0' }}>
-          <div className={styles.serviceContent}>
-            <h1 className={styles.serviceTitle} style={{ fontSize: '3rem', marginBottom: '30px' }}>{service.title}</h1>
-            
-            <div className={styles.serviceImageWrapper}>
-              {service.image ? (
-                <Image 
-                  src={service.image} 
-                  alt={service.title} 
-                  fill 
-                  className={styles.serviceImage}
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  priority
-                />
-              ) : (
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <i className={`${service.icon || "fa-solid fa-stethoscope"}`} style={{ fontSize: '6rem', color: '#cbd5e1' }}></i>
-                </div>
-              )}
+        <div className={styles.detailGrid}>
+          <div className={styles.detailTextContent}>
+            <div className={styles.sectionBadge}>
+              <i className="fa-solid fa-stethoscope"></i> Hizmet Detayı <span>—</span>
             </div>
+            
+            <h2>Dostlarınız İçin Profesyonel<br/><span>{service.title}</span></h2>
+            
+            <div className={styles.separator}></div>
 
-            <div className={styles.serviceDescription} style={{ fontSize: '1.15rem', lineHeight: '1.8', whiteSpace: 'pre-wrap' }}>
-              {service.description}
+            <div className={styles.detailImageContent}>
+              <div className={styles.blueShape}></div>
+              
+              <div className={styles.detailImageWrapper}>
+                {service.image ? (
+                  <Image 
+                    src={service.image} 
+                    alt={service.title} 
+                    fill 
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    priority
+                  />
+                ) : (
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <i className={`${service.icon || "fa-solid fa-stethoscope"}`} style={{ fontSize: '6rem', color: '#cbd5e1' }}></i>
+                  </div>
+                )}
+              </div>
+              
+              <div className={`${styles.floatingPill} ${styles.pill1}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> Şefkatli Yaklaşım
+              </div>
+              <div className={`${styles.floatingPill} ${styles.pill2}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> Modern Teknoloji
+              </div>
+              <div className={`${styles.floatingPill} ${styles.pill3}`}>
+                <i className="fa-solid fa-check-circle" style={{color: '#0ea5e9'}}></i> Güvenli Müdahale
+              </div>
+            </div>
+            
+            <div className={styles.textContent}>
+              {service.description?.split('\n').map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
             </div>
             {service.price && (
-              <div className={styles.servicePrice} style={{ fontSize: '1.4rem', marginTop: '30px', padding: '12px 24px' }}>
+              <div className={styles.detailPrice}>
                 {service.price} ₺
               </div>
             )}
