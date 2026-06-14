@@ -19,8 +19,9 @@ export default function GalleryDeleteButton({ id }: { id: string }) {
         } else {
           router.refresh();
         }
-      } catch (err) {
-        alert("Beklenmeyen bir hata oluştu.");
+      } catch (err: any) {
+        console.error("Silme Hatası:", err);
+        alert("Beklenmeyen bir hata oluştu: " + (err.message || "Bilinmeyen sunucu hatası"));
       }
       setIsDeleting(false);
     }
