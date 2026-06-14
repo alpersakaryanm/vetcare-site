@@ -83,14 +83,32 @@ export default async function Home() {
             <div className={styles.heroImageWrapper}>
               <div className={styles.glowEffect}></div>
               
-              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" className={`${styles.floatingPaw} ${styles.paw2}`}>
+              {/* Ayı Patisi (5 parmaklı) */}
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className={`${styles.floatingPaw} ${styles.pawBear}`}>
                 <ellipse cx="15" cy="45" rx="7" ry="10" transform="rotate(-35 15 45)" />
                 <ellipse cx="32" cy="25" rx="7" ry="11" transform="rotate(-15 32 25)" />
                 <ellipse cx="50" cy="18" rx="7" ry="11" />
                 <ellipse cx="68" cy="25" rx="7" ry="11" transform="rotate(15 68 25)" />
                 <ellipse cx="85" cy="45" rx="7" ry="10" transform="rotate(35 85 45)" />
-                
                 <path d="M15,70 C5,85 30,95 50,95 C70,95 95,85 85,70 C75,55 25,55 15,70 Z" />
+              </svg>
+
+              {/* Köpek Patisi (4 parmaklı, uzun) */}
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className={`${styles.floatingPaw} ${styles.pawDog}`}>
+                <ellipse cx="25" cy="40" rx="6" ry="10" transform="rotate(-30 25 40)" />
+                <ellipse cx="40" cy="20" rx="6" ry="11" transform="rotate(-10 40 20)" />
+                <ellipse cx="60" cy="20" rx="6" ry="11" transform="rotate(10 60 20)" />
+                <ellipse cx="75" cy="40" rx="6" ry="10" transform="rotate(30 75 40)" />
+                <path d="M25,65 C20,80 40,95 50,95 C60,95 80,80 75,65 C70,50 30,50 25,65 Z" />
+              </svg>
+
+              {/* Kedi Patisi (4 parmaklı, yuvarlak) */}
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className={`${styles.floatingPaw} ${styles.pawCat}`}>
+                <circle cx="25" cy="45" r="7" />
+                <circle cx="40" cy="25" r="7" />
+                <circle cx="60" cy="25" r="7" />
+                <circle cx="75" cy="45" r="7" />
+                <path d="M25,70 C15,80 35,90 50,90 C65,90 85,80 75,70 C65,60 35,60 25,70 Z" />
               </svg>
 
               <div className={styles.heroImageInner}>
