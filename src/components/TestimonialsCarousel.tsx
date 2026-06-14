@@ -35,60 +35,7 @@ function timeAgo(dateInput: Date | string): string {
   return `${years} yıl önce`;
 }
 
-// Helper for client-side image compression (< 100KB)
-async function compressImage(file: File): Promise<File> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      const img = new window.Image();
-      img.src = event.target?.result as string;
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        let width = img.width;
-        let height = img.height;
-        
-        // Resize if too large
-        const MAX_SIZE = 800;
-        if (width > height && width > MAX_SIZE) {
-          height *= MAX_SIZE / width;
-          width = MAX_SIZE;
-        } else if (height > MAX_SIZE) {
-          width *= MAX_SIZE / height;
-          height = MAX_SIZE;
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return resolve(file);
-        
-        ctx.drawImage(img, 0, 0, width, height);
-
-        // Attempt compression to get under ~100kb
-        let quality = 0.9;
-        const compress = () => {
-          canvas.toBlob((blob) => {
-            if (!blob) return resolve(file);
-            if (blob.size > 100 * 1024 && quality > 0.1) {
-              quality -= 0.1;
-              compress();
-            } else {
-              const compressedFile = new File([blob], file.name, {
-                type: "image/jpeg",
-                lastModified: Date.now(),
-              });
-              resolve(compressedFile);
-            }
-          }, "image/jpeg", quality);
-        };
-        compress();
-      };
-      img.onerror = (e) => reject(e);
-    };
-    reader.onerror = (e) => reject(e);
-  });
-}
+import { compressImageClientSide } from "@/lib/imageCompressor";
 
 export default function TestimonialsCarousel({ testimonials, session }: { testimonials: Testimonial[]; session: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -118,7 +65,7 @@ export default function TestimonialsCarousel({ testimonials, session }: { testim
     const photoFile = formData.get("photo") as File;
     if (photoFile && photoFile.size > 0) {
       try {
-        const compressed = await compressImage(photoFile);
+        const compressed = await compressImageClientSide(photoFile);
         formData.set("photo", compressed);
       } catch (err) {
         console.error("Compression failed", err);
