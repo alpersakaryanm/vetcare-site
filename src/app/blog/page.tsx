@@ -16,7 +16,9 @@ export default async function BlogPage() {
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
-        <div className="container">
+        <div className={styles.orb1}></div>
+        <div className={styles.orb2}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.heroContent}>
             <h1>Bilgi Kaynağımız</h1>
             <p>Sevimli dostlarınızın sağlığı, beslenmesi ve bakımı hakkında uzman yazıları.</p>

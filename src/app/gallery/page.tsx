@@ -24,7 +24,7 @@ export default async function GalleryPage() {
         <div className={styles.orb2}></div>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <h1 className={styles.heroTitle}>{pageTitle}</h1>
-          <p style={{ maxWidth: '800px', margin: '20px auto 0', fontSize: '1.2rem', color: 'white', opacity: 0.9, lineHeight: 1.6 }}>
+          <p style={{ maxWidth: '800px', margin: '20px auto 0', fontSize: '1.1rem', color: '#334155', opacity: 0.9 }}>
             {pageDesc}
           </p>
         </div>

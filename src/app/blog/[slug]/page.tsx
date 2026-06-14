@@ -33,8 +33,10 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
   return (
     <main className={styles.main}>
       <section className={styles.hero} style={{ padding: "120px 0 40px", minHeight: "auto" }}>
-        <div className="container">
-          <Link href="/blog" style={{ color: "white", textDecoration: "none", opacity: 0.8, display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
+        <div className={styles.orb1}></div>
+        <div className={styles.orb2}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <Link href="/blog" style={{ color: "#334155", textDecoration: "none", opacity: 0.8, display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
             <i className="fa-solid fa-arrow-left"></i> Blog'a Dön
           </Link>
         </div>

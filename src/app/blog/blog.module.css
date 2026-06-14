@@ -3,14 +3,32 @@
 }
 
 .hero {
-  background: linear-gradient(to right, #1a8cc4 0%, #116892 100%);
-  color: white;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #bae6fd 100%);
+  color: #0f172a;
   padding: 160px 0 80px; /* Account for fixed navbar */
   text-align: center;
   position: relative;
   overflow: hidden;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+}
+
+/* Floating background orbs */
+.orb1 {
+  position: absolute; width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%);
+  top: -250px; right: -250px; border-radius: 50%;
+  pointer-events: none; animation: floatOrb 9s ease-in-out infinite; z-index: 0;
+}
+.orb2 {
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%);
+  bottom: -200px; left: -200px; border-radius: 50%;
+  pointer-events: none; animation: floatOrb 12s ease-in-out infinite reverse; z-index: 0;
+}
+@keyframes floatOrb {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%      { transform: translate(30px,-40px) scale(1.08); }
 }
 
 .heroContent {
