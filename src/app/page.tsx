@@ -83,7 +83,15 @@ export default async function Home() {
             <div className={styles.heroImageWrapper}>
               <div className={styles.glowEffect}></div>
               
-              <i className={`fa-solid fa-paw ${styles.floatingPaw} ${styles.paw2}`}></i>
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" className={`${styles.floatingPaw} ${styles.paw2}`}>
+                <ellipse cx="15" cy="45" rx="7" ry="10" transform="rotate(-35 15 45)" />
+                <ellipse cx="32" cy="25" rx="7" ry="11" transform="rotate(-15 32 25)" />
+                <ellipse cx="50" cy="18" rx="7" ry="11" />
+                <ellipse cx="68" cy="25" rx="7" ry="11" transform="rotate(15 68 25)" />
+                <ellipse cx="85" cy="45" rx="7" ry="10" transform="rotate(35 85 45)" />
+                
+                <path d="M15,70 C5,85 30,95 50,95 C70,95 95,85 85,70 C75,55 25,55 15,70 Z" />
+              </svg>
 
               <div className={styles.heroImageInner}>
                 <Image 
