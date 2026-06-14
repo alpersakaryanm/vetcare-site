@@ -237,9 +237,9 @@
 }
 
 .heroImageWrapper {
-  flex: 1;
+  flex: 1.2;
   position: relative;
-  height: 550px; /* Görselin boyutunu artırdık (450px -> 550px) */
+  height: 700px; /* Görselin boyutunu daha da artırdık */
   width: 100%;
   z-index: 1;
 }
@@ -283,8 +283,8 @@
 }
 
 .pawCat {
-  bottom: 0%;
-  left: 15%;
+  bottom: 5%;
+  left: -10%;
   width: 5rem;
   height: 5rem;
   animation: floatCat 8s infinite ease-in-out alternate;
