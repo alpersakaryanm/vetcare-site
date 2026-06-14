@@ -5,6 +5,14 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Sharp kütüphanesini güvenli bir şekilde yükle (Windows'ta çökmeyi önler, Vercel'de çalışır)
+let sharp: any = null;
+try {
+  sharp = require('sharp');
+} catch (e) {
+  console.warn("Sharp kütüphanesi yüklenemedi. Görsel optimizasyonu atlanacak.");
+}
+
 /**
  * Uploads a file buffer to Supabase Storage and returns the public URL.
  * 
@@ -27,9 +35,8 @@ export async function uploadFileToSupabase(
   let finalPath = path;
 
   // Optimizasyon
-  if (!skipOptimization && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
+  if (!skipOptimization && sharp && contentType.startsWith('image/') && contentType !== 'image/svg+xml') {
     try {
-      const sharp = (await import('sharp')).default;
       finalBuffer = await sharp(fileBuffer)
         .resize({ width: 800, withoutEnlargement: true })
         .webp({ quality: 40 })
