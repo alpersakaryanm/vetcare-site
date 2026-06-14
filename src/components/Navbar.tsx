@@ -99,54 +99,73 @@ export default function Navbar({ session, services = [] }: { session: any, servi
     items.push({ href: "/admin/login", label: "Giriş Yap" });
   }
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Sayfa değiştiğinde mobil menüyü kapat
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   return (
     <nav className={styles.navbar}>
       <div className={`${styles.navContainer} ${isScrolled ? styles.navScrolled : ""}`}>
-        {items.map((item, idx) => {
-          const active = item.isLogout ? false : isItemActive(item, pathname);
-          const hasDropdown = item.subItems && item.subItems.length > 0;
-          const isHovered = hoveredTab === item.href;
+        
+        {/* Mobil Hamburger Butonu */}
+        <button 
+          className={styles.hamburgerBtn} 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <i className={`fa-solid ${isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+        </button>
 
-          return (
-            <div
-              key={item.href}
-              className={`${styles.tabWrapper} ${active ? styles.tabActiveWrapper : ""}`}
-              onMouseEnter={() => setHoveredTab(item.href)}
-              onMouseLeave={() => setHoveredTab(null)}
-            >
-              {item.isLogout ? (
-                <button
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                  className={`${styles.tab} ${styles.tabLogout}`}
-                >
-                  {item.label}
-                </button>
-              ) : (
-                <Link
-                  href={item.href}
-                  className={`${styles.tab} ${active ? styles.tabActive : ""}`}
-                >
-                  {item.label}
-                </Link>
-              )}
+        {/* Masaüstü Menü ve Mobil Menü İçeriği */}
+        <div className={`${styles.navItems} ${isMobileMenuOpen ? styles.mobileOpen : ""}`}>
+          {items.map((item, idx) => {
+            const active = item.isLogout ? false : isItemActive(item, pathname);
+            const hasDropdown = item.subItems && item.subItems.length > 0;
+            const isHovered = hoveredTab === item.href;
 
-              {/* Düşen Menü (Dropdown) */}
-              {hasDropdown && isHovered && (
-                <div className={styles.dropdown}>
-                  <div className={styles.dropdownArrow} />
-                  <div className={styles.dropdownContent}>
-                    {item.subItems!.map((sub, i) => (
-                      <Link key={sub.href} href={sub.href} className={styles.dropdownItem}>
-                        <div className={styles.dropdownTitle}>{sub.label}</div>
-                        <div className={styles.dropdownSub}>{sub.sub}</div>
-                      </Link>
-                    ))}
+            return (
+              <div
+                key={item.href}
+                className={`${styles.tabWrapper} ${active ? styles.tabActiveWrapper : ""}`}
+                onMouseEnter={() => setHoveredTab(item.href)}
+                onMouseLeave={() => setHoveredTab(null)}
+              >
+                {item.isLogout ? (
+                  <button
+                    onClick={() => signOut({ callbackUrl: "/" })}
+                    className={`${styles.tab} ${styles.tabLogout}`}
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`${styles.tab} ${active ? styles.tabActive : ""}`}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+
+                {/* Düşen Menü (Dropdown) */}
+                {hasDropdown && isHovered && (
+                  <div className={styles.dropdown}>
+                    <div className={styles.dropdownArrow} />
+                    <div className={styles.dropdownContent}>
+                      {item.subItems!.map((sub, i) => (
+                        <Link key={sub.href} href={sub.href} className={styles.dropdownItem}>
+                          <div className={styles.dropdownTitle}>{sub.label}</div>
+                          <div className={styles.dropdownSub}>{sub.sub}</div>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );

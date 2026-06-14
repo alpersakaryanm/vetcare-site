@@ -25,19 +25,19 @@ export async function compressImageClientSide(file: File): Promise<File> {
         
         ctx.drawImage(img, 0, 0, width, height);
         
-        // WebP formatında %60 kalite ile kaydet (Genelde 30-50 KB civarına düşer)
+        // Tüm tarayıcılarda (eski Safari dahil) %100 çalışması için JPEG formatında %70 kalite ile kaydet
         canvas.toBlob((blob) => {
           if (blob) {
-            const newFileName = file.name.replace(/\.[^/.]+$/, "") + ".webp";
+            const newFileName = file.name.replace(/\.[^/.]+$/, "") + ".jpeg";
             const newFile = new File([blob], newFileName, {
-              type: 'image/webp',
+              type: 'image/jpeg',
               lastModified: Date.now(),
             });
             resolve(newFile);
           } else {
             resolve(file); // Hata durumunda orijinali dön
           }
-        }, 'image/webp', 0.6); 
+        }, 'image/jpeg', 0.7); 
       };
       img.onerror = () => resolve(file);
       img.src = event.target?.result as string;
