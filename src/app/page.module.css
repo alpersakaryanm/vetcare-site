@@ -272,7 +272,7 @@
 }
 
 .pawBear {
-  top: 10%;
+  top: 25%;
   left: -15%;
   animation: floatBear 9s infinite ease-in-out alternate;
 }
