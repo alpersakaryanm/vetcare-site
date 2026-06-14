@@ -36,6 +36,7 @@ export default async function AdminLayout({
           <Link href="/admin/veterinarians" className={styles.navLink}>Ekibimiz</Link>
           <Link href="/admin/gallery" className={styles.navLink}>Galeri</Link>
           <Link href="/admin/testimonials" className={styles.navLink}>Yorumlar</Link>
+          <Link href="/admin/blog" className={styles.navLink}>Blog</Link>
           <Link href="/admin/pages" className={styles.navLink}>İletişim</Link>
           <Link href="/admin/users" className={styles.navLink}>Yöneticiler</Link>
           <Link href="/admin/settings" className={styles.navLink}>Ayarlar</Link>

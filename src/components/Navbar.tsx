@@ -42,6 +42,11 @@ const NAV_ITEMS: NavItem[] = [
     label: "Galeri",
   },
   {
+    href: "/blog",
+    label: "Blog",
+    matchPaths: ["/blog"],
+  },
+  {
     href: "/contact",
     label: "İletişim",
   },
