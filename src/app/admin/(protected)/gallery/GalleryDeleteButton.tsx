@@ -1,6 +1,5 @@
 "use client";
 
-import { deleteGalleryItem } from "@/actions/gallery";
 import { useState, startTransition } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./gallery.module.css";
@@ -14,15 +13,17 @@ export default function GalleryDeleteButton({ id }: { id: string }) {
       setIsDeleting(true);
       startTransition(async () => {
         try {
-          const result = await deleteGalleryItem(id);
-          if (result && result.error) {
-            alert(result.error);
+          const res = await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+          const result = await res.json();
+          
+          if (!res.ok || result.error) {
+            alert(result.error || "Silme işlemi başarısız oldu.");
           } else {
             router.refresh();
           }
         } catch (err: any) {
           console.error("Silme Hatası:", err);
-          alert("Beklenmeyen bir hata oluştu: " + (err.message || "Bilinmeyen sunucu hatası"));
+          alert("Bağlantı hatası: " + (err.message || "Lütfen internet bağlantınızı kontrol edin."));
         } finally {
           setIsDeleting(false);
         }
