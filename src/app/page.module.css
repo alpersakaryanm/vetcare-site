@@ -814,7 +814,9 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 110px; /* Menünün altında kalmaması için ekstra boşluk */
+    padding-top: 80px; /* Menünün altında kalmaması için ekstra boşluk ama çok da değil */
+    min-height: auto;
+    padding-bottom: 30px;
   }
   .heroText h1 {
     font-size: 2.5rem;
@@ -823,7 +825,7 @@
     font-size: 1.5rem;
   }
   .heroImageWrapper {
-    height: 400px;
+    height: 250px;
     margin-top: 0;
   }
   .floatingPaw {
