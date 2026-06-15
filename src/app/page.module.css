@@ -48,11 +48,9 @@
 }
 
 .heroLogoImg {
-  max-width: 300px;
+  max-width: 250px;
   height: auto;
   object-fit: contain;
-  background-color: transparent !important;
-  mix-blend-mode: multiply; /* Just in case it has a white background, this will remove it on light backgrounds */
 }
 
 .heroText h1 {
