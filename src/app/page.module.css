@@ -339,6 +339,7 @@
   object-position: bottom;
   border-radius: 20px;
   max-height: 90%;
+  mix-blend-mode: multiply; /* Removes white background */
 }
 
 /* Scroll indicator */
