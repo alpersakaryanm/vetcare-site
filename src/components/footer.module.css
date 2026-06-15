@@ -13,12 +13,12 @@
   margin-bottom: 40px;
 }
 
-.footerLogo {
-  color: white;
-  font-size: 2rem;
-  font-weight: 800;
+.footerLogoImg {
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
   margin-bottom: 16px;
-  letter-spacing: -0.5px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Optional: helps visibility on dark background if needed */
 }
 
 .description {

@@ -9,7 +9,7 @@ export default function Footer({ settings }: { settings?: any }) {
       <div className={`container ${styles.footerGrid}`}>
         {/* Hakkımızda / Logo */}
         <div className={styles.footerSection}>
-          <h3 className={styles.footerLogo}>{clinicName}</h3>
+          <img src="/images/logo.png" alt={clinicName} className={styles.footerLogoImg} />
         </div>
 
         {/* Biz Kimiz */}

@@ -48,7 +48,7 @@
 }
 
 .heroLogoImg {
-  max-width: 250px;
+  max-width: 180px;
   height: auto;
   object-fit: contain;
 }
@@ -794,6 +794,9 @@
   }
   .heroLogoWrapper {
     justify-content: center;
+  }
+  .heroLogoImg {
+    max-width: 140px;
   }
   .shareButtonsGroup {
     justify-content: center;
