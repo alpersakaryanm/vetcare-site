@@ -334,12 +334,13 @@
 
 .heroVideo {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* or cover depending on user preference, contain prevents cropping */
-  object-position: bottom;
-  border-radius: 20px;
-  max-height: 90%;
-  mix-blend-mode: multiply; /* Removes white background */
+  max-width: 450px;
+  height: 550px;
+  object-fit: cover;
+  border-radius: 200px; /* Capsule shape */
+  border: 8px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 12px rgba(255, 255, 255, 0.4);
+  transform: translateY(-20px);
 }
 
 /* Scroll indicator */
