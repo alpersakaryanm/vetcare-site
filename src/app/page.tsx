@@ -87,6 +87,7 @@ export default async function Home() {
             </div>
 
             <div className={styles.heroImageWrapper}>
+              <div className={styles.glowEffect}></div>
               {/* Ayı Patisi (5 parmaklı) */}
               <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className={`${styles.floatingPaw} ${styles.pawBear}`}>
                 <ellipse cx="15" cy="45" rx="7" ry="10" transform="rotate(-35 15 45)" />
@@ -116,13 +117,12 @@ export default async function Home() {
               </svg>
 
               <div className={styles.heroImageInner}>
-                <video 
-                  src="/video.mp4" 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
-                  className={styles.heroVideo}
+                <Image 
+                  src={settings?.hero_image || "/images/hero_vet_clinic_1781281471313.png"} 
+                  alt="Veteriner ve Sevimli Köpek" 
+                  fill 
+                  style={{ objectFit: 'contain', objectPosition: 'bottom' }} 
+                  priority
                 />
               </div>
             </div>

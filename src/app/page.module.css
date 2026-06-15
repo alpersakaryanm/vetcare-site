@@ -327,20 +327,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.heroVideo {
-  width: 100%;
-  max-width: 450px;
-  height: 550px;
-  object-fit: cover;
-  border-radius: 200px; /* Capsule shape */
-  border: 8px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 12px rgba(255, 255, 255, 0.4);
-  transform: translateY(-20px);
+  /* Animasyon tamamen kaldırıldı, görsel sabit duracak */
 }
 
 /* Scroll indicator */
