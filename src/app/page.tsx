@@ -118,12 +118,13 @@ export default async function Home() {
               </svg>
 
               <div className={styles.heroImageInner}>
-                <Image 
-                  src={settings?.hero_image || "/images/hero_vet_clinic_1781281471313.png"} 
-                  alt="Veteriner ve Sevimli Köpek" 
-                  fill 
-                  style={{ objectFit: 'contain', objectPosition: 'bottom' }} 
-                  priority
+                <video 
+                  src="/video.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className={styles.heroVideo}
                 />
               </div>
             </div>
