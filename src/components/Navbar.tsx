@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./navbar.module.css";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
@@ -58,7 +59,7 @@ function isItemActive(item: NavItem, pathname: string): boolean {
   return pathname.startsWith(item.href);
 }
 
-export default function Navbar({ session, services = [] }: { session: any, services?: any[] }) {
+export default function Navbar({ session, services = [], settings }: { session: any, services?: any[], settings?: any }) {
   const pathname = usePathname();
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -115,13 +116,30 @@ export default function Navbar({ session, services = [] }: { session: any, servi
     <nav className={styles.navbar}>
       <div className={`${styles.navContainer} ${isScrolled ? styles.navScrolled : ""}`}>
         
-        {/* Mobil Hamburger Butonu */}
-        <button 
-          className={styles.hamburgerBtn} 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <i className={`fa-solid ${isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
-        </button>
+        {/* Mobil Logo + Hamburger Alanı */}
+        <div className={styles.mobileHeader}>
+          <Link href="/" className={styles.mobileLogo}>
+            {settings?.logo ? (
+              <Image
+                src={settings.logo}
+                alt={settings.clinic_name || "Logo"}
+                width={120}
+                height={36}
+                style={{ objectFit: "contain", height: "36px", width: "auto" }}
+              />
+            ) : (
+              <span className={styles.mobileLogoText}>
+                {settings?.clinic_name || "VetCare"}
+              </span>
+            )}
+          </Link>
+          <button 
+            className={styles.hamburgerBtn} 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <i className={`fa-solid ${isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+          </button>
+        </div>
 
         {/* Masaüstü Menü ve Mobil Menü İçeriği */}
         <div className={`${styles.navItems} ${isMobileMenuOpen ? styles.mobileOpen : ""}`}>

@@ -39,7 +39,7 @@ export default async function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <NavbarWrapper session={session} services={services} />
+          <NavbarWrapper session={session} services={services} settings={settings} />
           {children}
           <FooterWrapper settings={settings} />
           <WhatsAppFloat settings={settings} />

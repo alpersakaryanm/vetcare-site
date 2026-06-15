@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 
-export default function NavbarWrapper({ session, services }: { session: any, services: any[] }) {
+export default function NavbarWrapper({ session, services, settings }: { session: any, services: any[], settings: any }) {
   const pathname = usePathname();
 
   // Do not render navbar on admin routes
@@ -11,5 +11,5 @@ export default function NavbarWrapper({ session, services }: { session: any, ser
     return null;
   }
 
-  return <Navbar session={session} services={services} />;
+  return <Navbar session={session} services={services} settings={settings} />;
 }
