@@ -39,8 +39,9 @@ export default async function Home() {
           
           <div className={styles.heroContent}>
             <div className={styles.heroText}>
-              <h1>{clinicName}</h1>
-              <h2>Veteriner Polikliniği</h2>
+              <div className={styles.heroLogoWrapper}>
+                <Image src="/images/logo.png" alt={clinicName} width={300} height={90} style={{ objectFit: 'contain' }} priority />
+              </div>
               <p>Sizin için birer evlat olan minik dostlarınızın mutluluğu, bizim en büyük ilham kaynağımız. Onların dili sessiz olsa da biz kalplerini duyuyoruz; attıkları her adımda yanlarında, hikayelerinin bir parçası olmaktan mutluluk duyuyoruz.</p>
               
               <div className={styles.shareButtonsGroup}>
