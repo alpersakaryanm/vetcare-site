@@ -118,13 +118,7 @@ export default function Navbar({ session, services = [], settings }: { session: 
         
         {/* Mobil Logo + Hamburger Alanı */}
         <div className={styles.mobileHeader}>
-          <Link href="/" className={styles.mobileLogo}>
-            <img
-              src="/images/logo.png"
-              alt={settings?.clinic_name || "VetCare"}
-              className={styles.logoImg}
-            />
-          </Link>
+
           <button 
             className={styles.hamburgerBtn} 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -135,14 +129,7 @@ export default function Navbar({ session, services = [], settings }: { session: 
 
         {/* Masaüstü Menü ve Mobil Menü İçeriği */}
         <div className={`${styles.navItems} ${isMobileMenuOpen ? styles.mobileOpen : ""}`}>
-          {/* Masaüstü Logo */}
-          <Link href="/" className={styles.desktopLogo}>
-            <img
-              src="/images/logo.png"
-              alt={settings?.clinic_name || "VetCare"}
-              className={styles.logoImg}
-            />
-          </Link>
+
           {items.map((item, idx) => {
             const active = item.isLogout ? false : isItemActive(item, pathname);
             const hasDropdown = item.subItems && item.subItems.length > 0;
