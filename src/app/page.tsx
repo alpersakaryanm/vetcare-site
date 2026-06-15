@@ -87,8 +87,6 @@ export default async function Home() {
             </div>
 
             <div className={styles.heroImageWrapper}>
-              <div className={styles.glowEffect}></div>
-              
               {/* Ayı Patisi (5 parmaklı) */}
               <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className={`${styles.floatingPaw} ${styles.pawBear}`}>
                 <ellipse cx="15" cy="45" rx="7" ry="10" transform="rotate(-35 15 45)" />
