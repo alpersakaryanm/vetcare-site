@@ -306,8 +306,30 @@
    MOBİL MENÜ (Responsive)
    ══════════════════════════════════════════════════════════ */
 @media (max-width: 860px) {
+  /* Mobilde container şeffaf ve minimum boyutta */
+  .navContainer {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    height: auto;
+    padding: 0;
+    justify-content: flex-end;
+  }
+
   .hamburgerBtn {
-    display: block; /* Mobil'de göster */
+    display: flex; /* Mobil'de göster */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin-left: 0;
+    background: linear-gradient(135deg, #1a8cc4 0%, #116892 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0f5c82;
+    font-size: 1.2rem;
+    color: #fff;
   }
 
   .navItems {
