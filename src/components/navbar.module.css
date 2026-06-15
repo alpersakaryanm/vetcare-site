@@ -81,6 +81,26 @@
   flex-shrink: 0;
 }
 
+.desktopLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 0 14px 0 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  height: 100%;
+}
+
+/* Logo görseli — transparan PNG, mavi arka plan üzerine drop-shadow ile görünürlük */
+.logoImg {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  /* Transparan logoyu mavi zemin üzerine belirginleştir */
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
 .mobileLogoText {
   font-size: 1.1rem;
   font-weight: 800;
@@ -342,6 +362,17 @@
 
   .mobileHeader {
     display: flex; /* Mobilde göster */
+    background: linear-gradient(to right, #1a8cc4 0%, #116892 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0f5c82;
+    padding: 4px 8px;
+    min-height: 54px;
+  }
+
+  /* Masaüstü logo mobilde gizle */
+  .desktopLogo {
+    display: none;
   }
 
   .hamburgerBtn {
